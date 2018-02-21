@@ -22,8 +22,7 @@ const SHIPPING_ESTIMATE_IN_SECONDS = {
 
 function getLatestSla(slas) {
   return getGreaterSla(slas, sla =>
-    getShippingEstimateQuantityInSeconds(sla.shippingEstimate)
-  )
+    getShippingEstimateQuantityInSeconds(sla.shippingEstimate))
 }
 
 function getCheapestSla(slas) {
@@ -99,8 +98,7 @@ function excludePickupOptionsFromItemSlas(slas) {
 
 function getFastestSla(slas) {
   return getLowerSla(slas, sla =>
-    getShippingEstimateQuantityInSeconds(sla.shippingEstimate)
-  )
+    getShippingEstimateQuantityInSeconds(sla.shippingEstimate))
 }
 
 function getGreaterSla(slas, greaterComparator) {
@@ -122,6 +120,8 @@ function getGreaterSla(slas, greaterComparator) {
 }
 
 function getShippingEstimateQuantityInSeconds(estimate) {
+  if (estimate === undefined || estimate === null || estimate === '') { return null }
+
   const unit = getShippingEstimateUnit(estimate)
   let quantity = getShippingEstimateQuantity(estimate)
   if (unit === 'bd') {
@@ -154,6 +154,7 @@ function getShippingEstimateUnit(estimate) {
 }
 
 module.exports = {
+  getShippingEstimateQuantityInSeconds,
   getLatestSla,
   getFastestSla,
   getCheapestSla,
