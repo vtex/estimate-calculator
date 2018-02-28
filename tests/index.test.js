@@ -26,6 +26,16 @@ function getNewLogisticWithSla(logisticsInfo, slaId, shippingEstimate) {
   )
 }
 
+function getNewLogisticWithoutSla(logisticsInfo) {
+  return cloneDeep(
+    logisticsInfo.map(item => {
+      return Object.assign({}, item, {
+        slas: [],
+      })
+    })
+  )
+}
+
 function getNewLogisticWithSelectedSla(
   logisticsInfo,
   selectedSla,
@@ -44,6 +54,9 @@ function getNewLogisticWithSelectedSla(
   )
 }
 
+const LOGISTICS_INFO_WITHOUT_SLAS = getNewLogisticWithoutSla(
+  BASE_LOGISTICS_INFO
+)
 const BUSINESS_DAYS_LOGISTICS_INFO = getNewLogisticWithSla(
   BASE_LOGISTICS_INFO,
   'Expressa',
@@ -238,6 +251,12 @@ describe('Check if selectCheapestSlaForAllItems works', () => {
     expect(selectCheapestSlaForAllItems([])).toBeNull()
   })
 
+  it('For Empty SLAs cases', () => {
+    expect(selectCheapestSlaForAllItems(LOGISTICS_INFO_WITHOUT_SLAS)).toEqual(
+      LOGISTICS_INFO_WITHOUT_SLAS
+    )
+  })
+
   it('For Business Days case', () => {
     expect(selectCheapestSlaForAllItems(BUSINESS_DAYS_LOGISTICS_INFO)).toEqual(
       EXPECTED_BUSINESS_DAYS_CHEAPEST_LOGISTICS_INFO
@@ -268,6 +287,12 @@ describe('Check if selectFastestSlaForAllItems works', () => {
     expect(selectFastestSlaForAllItems()).toBeNull()
     expect(selectFastestSlaForAllItems(null)).toBeNull()
     expect(selectFastestSlaForAllItems([])).toBeNull()
+  })
+
+  it('For Empty SLAs cases', () => {
+    expect(selectFastestSlaForAllItems(LOGISTICS_INFO_WITHOUT_SLAS)).toEqual(
+      LOGISTICS_INFO_WITHOUT_SLAS
+    )
   })
 
   it('For Business Days case', () => {
