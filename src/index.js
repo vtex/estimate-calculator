@@ -62,15 +62,11 @@ function selectCheapestSlaForAllItems(logisticsInfo) {
       excludePickupOptionsFromItemSlas(item.slas)
     )
 
-    return Object.assign(
-      {},
-      {
-        slas: excludePickupOptionsFromItemSlas(item.slas),
-        selectedSla: cheapestSla.id,
-        selectedDeliveryChannel: cheapestSla.deliveryChannel,
-      },
-      item
-    )
+    return Object.assign({}, item, {
+      slas: excludePickupOptionsFromItemSlas(item.slas),
+      selectedSla: cheapestSla.id,
+      selectedDeliveryChannel: cheapestSla.deliveryChannel,
+    })
   })
   return newLogisticsInfo
 }
@@ -89,15 +85,11 @@ function selectFastestSlaForAllItems(logisticsInfo) {
       excludePickupOptionsFromItemSlas(item.slas)
     )
 
-    return Object.assign(
-      {},
-      {
-        slas: excludePickupOptionsFromItemSlas(item.slas),
-        selectedSla: fastestSla.id,
-        selectedDeliveryChannel: fastestSla.deliveryChannel,
-      },
-      item
-    )
+    return Object.assign({}, item, {
+      slas: excludePickupOptionsFromItemSlas(item.slas),
+      selectedSla: fastestSla.id,
+      selectedDeliveryChannel: fastestSla.deliveryChannel,
+    })
   })
   return newLogisticsInfo
 }
