@@ -22,7 +22,8 @@ const SHIPPING_ESTIMATE_IN_SECONDS = {
 
 function getLatestSla(slas) {
   return getGreaterSla(slas, sla =>
-    getShippingEstimateQuantityInSeconds(sla.shippingEstimate))
+    getShippingEstimateQuantityInSeconds(sla.shippingEstimate)
+  )
 }
 
 function getCheapestSla(slas) {
@@ -53,18 +54,19 @@ function selectCheapestSlaForAllItems(logisticsInfo) {
   }
 
   const newLogisticsInfo = logisticsInfo.map(item => {
+    if (!item.slas || item.slas.length === 0) {
+      return item
+    }
+
     const cheapestSla = getCheapestSla(
       excludePickupOptionsFromItemSlas(item.slas)
     )
-    return Object.assign(
-      {},
-      {
-        slas: excludePickupOptionsFromItemSlas(item.slas),
-        selectedSla: cheapestSla.id,
-        selectedDeliveryChannel: cheapestSla.deliveryChannel,
-      },
-      item
-    )
+
+    return Object.assign({}, item, {
+      slas: excludePickupOptionsFromItemSlas(item.slas),
+      selectedSla: cheapestSla.id,
+      selectedDeliveryChannel: cheapestSla.deliveryChannel,
+    })
   })
   return newLogisticsInfo
 }
@@ -75,19 +77,19 @@ function selectFastestSlaForAllItems(logisticsInfo) {
   }
 
   const newLogisticsInfo = logisticsInfo.map(item => {
+    if (!item.slas || item.slas.length === 0) {
+      return item
+    }
+
     const fastestSla = getFastestSla(
       excludePickupOptionsFromItemSlas(item.slas)
     )
 
-    return Object.assign(
-      {},
-      {
-        slas: excludePickupOptionsFromItemSlas(item.slas),
-        selectedSla: fastestSla.id,
-        selectedDeliveryChannel: fastestSla.deliveryChannel,
-      },
-      item
-    )
+    return Object.assign({}, item, {
+      slas: excludePickupOptionsFromItemSlas(item.slas),
+      selectedSla: fastestSla.id,
+      selectedDeliveryChannel: fastestSla.deliveryChannel,
+    })
   })
   return newLogisticsInfo
 }
@@ -98,7 +100,8 @@ function excludePickupOptionsFromItemSlas(slas) {
 
 function getFastestSla(slas) {
   return getLowerSla(slas, sla =>
-    getShippingEstimateQuantityInSeconds(sla.shippingEstimate))
+    getShippingEstimateQuantityInSeconds(sla.shippingEstimate)
+  )
 }
 
 function getGreaterSla(slas, greaterComparator) {
@@ -120,7 +123,9 @@ function getGreaterSla(slas, greaterComparator) {
 }
 
 function getShippingEstimateQuantityInSeconds(estimate) {
-  if (estimate === undefined || estimate === null || estimate === '') { return null }
+  if (estimate === undefined || estimate === null || estimate === '') {
+    return null
+  }
 
   const unit = getShippingEstimateUnit(estimate)
   let quantity = getShippingEstimateQuantity(estimate)
