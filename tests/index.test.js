@@ -43,13 +43,10 @@ function getNewLogisticWithSelectedSla(
 ) {
   return cloneDeep(
     logisticsInfo.map(item => {
-      return Object.assign(
-        {
-          selectedSla,
-          selectedDeliveryChannel,
-        },
-        item
-      )
+      return Object.assign({}, item, {
+        selectedSla,
+        selectedDeliveryChannel,
+      })
     })
   )
 }
