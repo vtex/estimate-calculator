@@ -54,16 +54,16 @@ function selectCheapestSlaForAllItems(logisticsInfo) {
   }
 
   const newLogisticsInfo = logisticsInfo.map(item => {
-    if (!item.slas || item.slas.length === 0) {
+    const filteredSlas = excludePickupOptionsFromItemSlas(item.slas)
+
+    if (!filteredSlas || filteredSlas.length === 0) {
       return item
     }
 
-    const cheapestSla = getCheapestSla(
-      excludePickupOptionsFromItemSlas(item.slas)
-    )
+    const cheapestSla = getCheapestSla(filteredSlas)
 
     return Object.assign({}, item, {
-      slas: excludePickupOptionsFromItemSlas(item.slas),
+      slas: item.slas,
       selectedSla: cheapestSla.id,
       selectedDeliveryChannel: cheapestSla.deliveryChannel,
     })
@@ -77,16 +77,16 @@ function selectFastestSlaForAllItems(logisticsInfo) {
   }
 
   const newLogisticsInfo = logisticsInfo.map(item => {
-    if (!item.slas || item.slas.length === 0) {
+    const filteredSlas = excludePickupOptionsFromItemSlas(item.slas)
+
+    if (!filteredSlas || filteredSlas.length === 0) {
       return item
     }
 
-    const fastestSla = getFastestSla(
-      excludePickupOptionsFromItemSlas(item.slas)
-    )
+    const fastestSla = getFastestSla(filteredSlas)
 
     return Object.assign({}, item, {
-      slas: excludePickupOptionsFromItemSlas(item.slas),
+      slas: item.slas,
       selectedSla: fastestSla.id,
       selectedDeliveryChannel: fastestSla.deliveryChannel,
     })
