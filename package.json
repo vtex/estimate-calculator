@@ -7,12 +7,15 @@
     "src"
   ],
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "babel src --out-dir lib",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "6",
     "babel-eslint": "^8.2.2",
     "babel-jest": "^22.2.2",
