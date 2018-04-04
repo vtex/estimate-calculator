@@ -1,18 +1,21 @@
 {
   "name": "@vtex/estimate-calculator",
-  "version": "1.0.2",
+  "version": "1.0.7",
   "description": "",
   "main": "src/index.js",
   "files": [
     "src"
   ],
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "babel src --out-dir src",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "6",
     "babel-eslint": "^8.2.2",
     "babel-jest": "^22.2.2",
