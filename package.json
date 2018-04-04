@@ -3,12 +3,10 @@
   "version": "1.0.6",
   "description": "",
   "main": "src/index.js",
-  "files": [
-    "lib"
-  ],
+  "files": ["src"],
   "scripts": {
     "test": "jest",
-    "build": "babel src --out-dir lib",
+    "build": "babel src --out-dir src",
     "prepublishOnly": "npm run build"
   },
   "keywords": [],
@@ -29,9 +27,7 @@
     "transform": {
       "^.+\\.(js|jsx|mjs)$": "<rootDir>/node_modules/babel-jest"
     },
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
-    ]
+    "transformIgnorePatterns": ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"]
   },
   "dependencies": {
     "lodash": "^4.17.5"
