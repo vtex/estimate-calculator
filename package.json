@@ -2,13 +2,13 @@
   "name": "@vtex/estimate-calculator",
   "version": "1.0.7",
   "description": "",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "files": [
-    "src"
+    "lib"
   ],
   "scripts": {
     "test": "jest",
-    "build": "babel src --out-dir src",
+    "build": "babel src --out-dir lib",
     "prepublishOnly": "npm run build"
   },
   "keywords": [],
