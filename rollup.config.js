@@ -1,5 +1,6 @@
 import resolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
+import uglify from 'rollup-plugin-uglify'
 import babel from 'rollup-plugin-babel'
 import pkg from './package.json'
 
@@ -14,11 +15,12 @@ export default [
       sourcemap: true,
     },
     plugins: [
-      resolve(), // so Rollup can find `ms`
+      resolve(),
       babel({
         exclude: 'node_modules/**', // only transpile our source code
       }),
-      commonjs(), // so Rollup can convert `ms` to an ES module
+      uglify(),
+      commonjs(),
     ],
   },
 
