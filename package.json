@@ -1,14 +1,16 @@
 {
   "name": "@vtex/estimate-calculator",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "",
   "main": "lib/index.js",
+  "module": "lib/index.esm.js",
+  "browser": "lib/index.umd.js",
   "files": [
     "lib"
   ],
   "scripts": {
-    "test": "jest",
-    "build": "babel src --out-dir lib",
+    "test": "cross-env NODE_ENV=test jest",
+    "build": "cross-env NODE_ENV=production rollup -c",
     "prepublishOnly": "npm run build"
   },
   "keywords": [],
@@ -16,14 +18,21 @@
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-core": "6",
+    "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.2",
-    "babel-jest": "^22.2.2",
+    "babel-jest": "^22.4.3",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "babel-preset-env": "^1.6.1",
+    "cross-env": "^5.1.4",
     "eslint": "^4.18.0",
     "eslint-config-vtex": "^8.0.0",
     "eslint-plugin-jest": "^21.12.2",
-    "jest": "^22.3.0"
+    "jest": "^22.3.0",
+    "rollup": "^0.57.1",
+    "rollup-plugin-babel": "^3.0.3",
+    "rollup-plugin-commonjs": "^9.1.0",
+    "rollup-plugin-node-resolve": "^3.3.0",
+    "rollup-plugin-uglify": "^3.0.0"
   },
   "jest": {
     "transform": {
