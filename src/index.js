@@ -1,6 +1,6 @@
-const endsWith = require('lodash/endsWith')
-const reject = require('lodash/reject')
-const convertBusinnesDaysToDays = require('./businessDays')
+import endsWith from 'lodash/endsWith'
+import reject from 'lodash/reject'
+import convertBusinnesDaysToDays from './businessDays'
 
 const SHIPPING_ESTIMATE_UNITS = {
   BUSINESS_DAYS: 'bd',

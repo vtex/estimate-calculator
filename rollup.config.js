@@ -34,9 +34,11 @@ export default [
     input: 'src/index.js',
     external: ['ms'],
     plugins: [
+      resolve(),
       babel({
         exclude: 'node_modules/**', // only transpile our source code
       }),
+      commonjs(),
     ],
     output: [
       { file: pkg.main, format: 'cjs', sourcemap: true },

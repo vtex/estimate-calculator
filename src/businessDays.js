@@ -1,8 +1,8 @@
-const isNumber = require('lodash/isNumber')
+import isNumber from 'lodash/isNumber'
 
 const DAY_IN_MS = 24 * 60 * 60 * 1000
 
-module.exports = function convertBusinnesDaysToDays(businessDays) {
+function convertBusinnesDaysToDays(businessDays) {
   const start = new Date()
   const end = addAvailableDaysToDate(start, businessDays)
   return diffInDays(end, start)
@@ -50,3 +50,5 @@ function diffInDays(dateA = new Date(), dateB = new Date()) {
 function diffInMiliseconds(dateA = new Date(), dateB = new Date()) {
   return dateA - dateB
 }
+
+export default convertBusinnesDaysToDays
