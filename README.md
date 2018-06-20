@@ -23,6 +23,26 @@ estimateCalculator.getFastestSla([
 ```
 ## API
 
+### getShippingEstimateQuantity(estimate)
+
+Returns only the shippingEstimate quantity
+
+#### estimate
+
+Type: `String`
+
+shippingEstimate of a given SLA
+
+### getShippingEstimateUnit(estimate)
+
+Returns only the shippingEstimate unit
+
+#### estimate
+
+Type: `String`
+
+shippingEstimate of a given SLA
+
 ### getShippingEstimateQuantityInSeconds(estimate)
 
 Returns shippingEstimate converted to seconds
@@ -83,7 +103,7 @@ Type: `Array`
 
 Array that contains all the logistics information of each item of the order
 
-Format of the Array: 
+Format of the Array:
 ```js
 [
 //   {
@@ -258,6 +278,12 @@ Format of the Array:
 #### Examples
 
 ```js
+
+estimateCalculator.getShippingEstimateQuantity('10m')
+// 10
+
+estimateCalculator.getShippingEstimateUnit('10m')
+// m
 
 estimateCalculator.getShippingEstimateQuantityInSeconds('10m')
 // 600

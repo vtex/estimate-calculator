@@ -160,6 +160,8 @@ function getShippingEstimateUnit(estimate) {
 
 module.exports = {
   getShippingEstimateQuantityInSeconds,
+  getShippingEstimateQuantity,
+  getShippingEstimateUnit,
   getLatestSla,
   getFastestSla,
   getCheapestSla,
