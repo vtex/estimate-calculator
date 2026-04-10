@@ -1,0 +1,20 @@
+- name: estimate-calculator
+  referenceId: PLACEHOLDER
+  description: SonarQube scan for estimate-calculator
+  build:
+    provider: dkcicd
+    pipelines:
+      - name: node-ci-v2
+        parameters:
+          sonarProjectName: estimate-calculator
+          nodeVersion: 20-bookworm
+          nodeCommands:
+            - test -- --coverage
+        runtime:
+          architecture: amd64
+        when:
+          - event: pull_request
+            source: branch
+          - event: push
+            source: branch
+            regex: master
