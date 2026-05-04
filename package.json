@@ -12,7 +12,8 @@
     "test": "cross-env NODE_ENV=test jest",
     "build": "cross-env NODE_ENV=production rollup -c",
     "prepublishOnly": "npm run build",
-    "postreleasy": "npm publish"
+    "postreleasy": "npm publish",
+    "test:coverage": "jest --coverage"
   },
   "keywords": [],
   "author": "",
