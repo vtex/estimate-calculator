@@ -1,0 +1,21 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: estimate-calculator
+  description: Biblioteca para cálculo e comparação de shippingEstimate de SLAs.
+  tags:
+    - javascript
+  annotations:
+    vtex.com/janus-acronym: ""
+    vtex.com/o11y-os-index: ""
+    grafana/dashboard-selector: ""
+    github.com/project-slug: vtex/estimate-calculator
+    vtex.com/platform-flow-id: Shopper#4
+    backstage.io/techdocs-ref: dir:../
+    vtex.com/application-id: TWNH67U0
+spec:
+  system: checkout
+  lifecycle: stable
+  owner: te-0001
+  type: library
+  dependsOn: []
